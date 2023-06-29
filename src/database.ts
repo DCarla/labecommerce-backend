@@ -1,6 +1,51 @@
 import { TUsers } from "./types";
 import { TProducts } from "./types";
 
+export function getAllUsers(): TUsers[] {
+  return users;
+}
+
+export function getAllProducts(): TProducts[] {
+  return product;
+}
+
+export const createUser = (
+  id: string,
+  name: string,
+  email: string,
+  password: string
+): void => {
+  const newUser: TUsers = {
+    id,
+    name,
+    email,
+    password,
+    createdAt: new Date().toISOString(),
+  };
+
+  users.push(newUser);
+  console.log("adicionado com sucesso");
+};
+
+export const createProduct = (
+  id: string,
+  name: string,
+  price: number,
+  description: string,
+  imageUrl: string
+): void => {
+  const newProduct: TProducts = {
+    id,
+    name,
+    price,
+    description,
+    imageUrl,
+  };
+
+  product.push(newProduct);
+  console.log("adicionado com sucesso");
+};
+
 export const users: TUsers[] = [
   {
     id: "001",
@@ -36,3 +81,9 @@ export const product: TProducts[] = [
     imageUrl: "https://picsum.photos/seed/Monitor/400",
   },
 ];
+export const procurarProdutoPorNome = (name: string): TProducts[] => {
+  const resultado = product.filter((produto) => {
+    return produto.name.includes(name);
+  });
+  return resultado;
+};
