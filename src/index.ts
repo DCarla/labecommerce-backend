@@ -1,5 +1,5 @@
-import { createProduct, createUser, users } from "./database";
-import { product } from "./database";
+import { createProduct, createUser, product, users } from "./database";
+
 import { getAllUsers } from "./database";
 import { getAllProducts } from "./database";
 import { procurarProdutoPorNome } from "./database";
@@ -7,7 +7,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { TProducts, TUsers } from "./types";
 
-console.log("funcionou");
+// console.log("funcionou");
 // console.log(users);
 // console.log(product);
 createUser("u0100", "Carla", "dc@gmail.com", "123456");
@@ -89,4 +89,53 @@ app.post("/product", (req: Request, res: Response) => {
   product.push(newProduct);
 
   res.status(201).send("Produto cadastrado com sucesso");
+});
+
+app.delete("/users/:id", (req: Request, res: Response) => {
+  const idToDelete = req.params.id;
+
+  const userIndex = users.findIndex((user) => user.id === idToDelete);
+
+  if (userIndex >= 0) {
+    users.splice(userIndex, 1);
+  }
+  res.status(200).send("User apagado com sucesso");
+});
+
+app.delete("/product/:id", (req: Request, res: Response) => {
+  const idToDelete = req.params.id;
+
+  const productIndex = product.findIndex(
+    (products) => products.id === idToDelete
+  );
+
+  if (productIndex >= 0) {
+    product.splice(productIndex, 1);
+  }
+  res.status(200).send("Produto  apagado com sucesso");
+});
+
+app.put("/product/:id", (req: Request, res: Response) => {
+  const idtoFind = req.params.id;
+
+  const newId = req.body.newId as string | undefined;
+  const newName = req.body.newName as string | undefined;
+  const newPrice = req.body.newPrice as number | undefined;
+  const newDescription = req.body.newDescription as string | undefined;
+  const newImage = req.body.newImage as string | undefined;
+
+  const result = product.find((product) => {
+    return idtoFind === product.id;
+  });
+
+  if (result) {
+    result.id = newId || result.id;
+    result.name = newName || result.name;
+    (result.price = isNaN(Number(newPrice))
+      ? result.price
+      : (newPrice as number)),
+      (result.description = newDescription || result.description);
+    result.imageUrl = newImage || result.imageUrl;
+  }
+  res.status(200).send("Produto atualizado com sucesso");
 });
