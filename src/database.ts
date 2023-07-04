@@ -24,7 +24,7 @@ export const createUser = (
   };
 
   users.push(newUser);
-  console.log("adicionado com sucesso");
+  // console.log("adicionado com sucesso");
 };
 
 export const createProduct = (
@@ -43,7 +43,7 @@ export const createProduct = (
   };
 
   product.push(newProduct);
-  console.log("adicionado com sucesso");
+  // console.log("adicionado com sucesso");
 };
 
 export const users: TUsers[] = [
