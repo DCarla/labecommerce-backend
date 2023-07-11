@@ -64,3 +64,4 @@ SELECT * FROM products;
 
 DROP TABLE products;
 
+SELECT * FROM users;
