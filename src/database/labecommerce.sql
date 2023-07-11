@@ -11,6 +11,7 @@ CREATE TABLE users(
     created_at TEXT NOT NULL 
 );
 
+
 -- Comando para apagar tabela
 
 DROP TABLE users;
@@ -20,6 +21,11 @@ DROP TABLE users;
 select * from users;
 
 
+
+
+
+select * from users;
+
 --Populando a tabela de pessoas usuárias
 
 INSERT INTO users (id, name, email, password, created_at)
@@ -28,18 +34,25 @@ VALUES ("001","Fulano","dcs@gmail.com","fulano123",datetime('now')),
        ("003","Ciclana","lua@hotmail.com","fulano123",datetime('now'));
 
 
+
+
+
+
 --Criação da tabela de produtos
 CREATE TABLE products(
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
     name TEXT NOT NULL,
+
     price REAL  NOT NULL ,
     description TEXT  NOT NULL ,
     image_url TEXT  NOT NULL
 );
 
+
 -- Populando a tabela de produtos
 
 INSERT INTO products (id, name, price, description, image_url)
+
 VALUES ("prod001","Mouse Pad", 20 ,"Ergonomico","https://i.ebayimg.com/images/g/croAAOSwvs9iMBqr/s-l500.jpg"),
        ("prod002","Monitor 32 polegadas", 1599.90 ,"Monitor LED","https://i.ebayimg.com/images/g/augAAOSwZttfNq6N/s-l500.jpg"),
        ("prod003","Teclado", 30 ,"Teclado ABNT","https://i.ebayimg.com/images/g/loQAAOSw5Nhi6ROL/s-l500.jpg"),
@@ -50,3 +63,4 @@ SELECT * FROM products;
 
 
 DROP TABLE products;
+
