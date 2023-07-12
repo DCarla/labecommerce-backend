@@ -18,14 +18,6 @@ DROP TABLE users;
 
 -- Comando para procurar itens em uma tabela 
 
-select * from users;
-
-
-
-
-
-select * from users;
-
 --Populando a tabela de pessoas usuárias
 
 INSERT INTO users (id, name, email, password, created_at)
@@ -52,6 +44,16 @@ CREATE TABLE products(
 -- Populando a tabela de produtos
 
 INSERT INTO products (id, name, price, description, image_url)
+
+
+VALUES ("prod001","Mouse Pad", 20 ,"Ergonomico","https://i.ebayimg.com/images/g/croAAOSwvs9iMBqr/s-l500.jpg"),
+       ("prod002","Monitor 32 polegadas", 1599.90 ,"Monitor LED","https://i.ebayimg.com/images/g/augAAOSwZttfNq6N/s-l500.jpg"),
+       ("prod003","Teclado", 30 ,"Teclado ABNT","https://i.ebayimg.com/images/g/loQAAOSw5Nhi6ROL/s-l500.jpg"),
+       ("prod004","Notebook ",4500 ,"Notebook Dell N2021","https://i.ebayimg.com/images/g/uDoAAOSwpFxkpX5O/s-l500.jpg"),
+       ("prod005","HeadSet", 260 ,"Sem fio","https://i.ebayimg.com/images/g/Z8sAAOSwz29kXxlI/s-l500.jpg");
+
+SELECT * FROM products;
+
 
 VALUES ("prod001","Mouse Pad", 20 ,"Ergonomico","https://i.ebayimg.com/images/g/croAAOSwvs9iMBqr/s-l500.jpg"),
        ("prod002","Monitor 32 polegadas", 1599.90 ,"Monitor LED","https://i.ebayimg.com/images/g/augAAOSwZttfNq6N/s-l500.jpg"),
@@ -129,5 +131,7 @@ where id  = '003';
 
 
  select * from users;
+
+DROP TABLE products;
 
 
