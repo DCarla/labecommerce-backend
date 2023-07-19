@@ -55,8 +55,6 @@ VALUES ("prod001","Mouse Pad", 20 ,"Ergonomico","https://i.ebayimg.com/images/g/
 SELECT * FROM products;
 
 
-DROP TABLE products;
-
 
 ---Get All Users
 SELECT * FROM users;
@@ -137,6 +135,7 @@ CREATE TABLE purchases(
 	ON DELETE CASCADE 
 );
 
+
 --Exercicio 2
 
 --a) Crie um pedido para cada pessoa cadastrada
@@ -175,7 +174,7 @@ on purchases.buyer = users.id;
 -- Exercicio 1 - Criação da tabela de relações
 
 CREATE TABLE purchases_products(
-purchase_id TEXT  NOT NULL AS ,
+purchase_id TEXT  NOT NULL  ,
 product_id TEXT   NOT NULL,
 quantity INTEGER NOT NULL,
 FOREIGN KEY (product_id) REFERENCES products(id)
@@ -189,7 +188,7 @@ FOREIGN KEY (purchase_id) REFERENCES purchases(id)
 
 );
 
-drop table purchases_products;
+
 
 
 select * from purchases_products;
@@ -219,7 +218,6 @@ ON purchases_products.purchase_id = purchases.id;
 -----------------------------------------------------------------------------
 
 
-        SELECT * from purchases_products;
 
        
 =======
@@ -241,7 +239,6 @@ VALUES ("prod001","Mouse Pad", 20 ,"Ergonomico","https://i.ebayimg.com/images/g/
 SELECT * FROM products;
 
 
-DROP TABLE products;
 
 
 ---Get All Users
