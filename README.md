@@ -1,4 +1,4 @@
-# labecommerce-backend
+Labecommerce-backend
 
 Projeto Labecommerce-backend de uma API vinculada a um banco de dados real.
 
