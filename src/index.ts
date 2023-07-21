@@ -9,9 +9,6 @@ import { TProducts, TUsers } from "./types";
 import { type } from "os";
 import { db } from "./database/knex";
 
-// console.log("funcionou");
-// console.log(users);
-// console.log(product);
 createUser("u0100", "Carla", "dc@gmail.com", "123456");
 createProduct(
   "prod003",
@@ -20,12 +17,6 @@ createProduct(
   "Ergonomico",
   "https://cdn.pixabay.com/photo/2020/04/04/15/04/click-5002627_1280.jpg"
 );
-
-// console.log(users);
-
-// console.table(getAllUsers());
-// console.table(getAllProducts());
-// console.table(procurarProdutoPorNome("mouse"));
 
 const app = express();
 
@@ -89,33 +80,6 @@ app.get("/purchases", async (req: Request, res: Response) => {
   }
 });
 
-// //Get Purchase by id
-// app.get("/purchases/:id", async (req: Request, res: Response) => {
-//   try {
-//     const idSearch = req.params.id;
-
-//     const resultPurchase = await db
-//       .select(
-//         "purchases.id",
-//         "purchases.buyer AS buyerId",
-//         "users.name AS userName",
-//         "users.email AS userEmail",
-//         "purchases.total_price",
-//         "purchases.created_at"
-//       )
-//       .from("purchases")
-//       .innerJoin("users", "purchases.buyer", "users.id")
-//       .where("purchases.id", "=", idSearch);
-//     res.status(200).send(resultPurchase);
-//   } catch (error: any) {
-//     console.log(error);
-//     if (res.statusCode === 200) {
-//       res.status(500);
-//     }
-//     res.send(error.message);
-//   }
-// });
-
 // Get All products - Refatorando usando Knex - usando RAW
 // Get All products- Refatorando usando Knex - usando QueryBuilder
 app.get("/products", async (req: Request, res: Response) => {
@@ -149,7 +113,7 @@ app.get("/product/search", async (req: Request, res: Response) => {
       SELECT * FROM products
       WHERE name like '%${searchName}%'`);
 
-      if (!searchName) {
+      if (result.length === 0) {
         res.status(404);
         throw new Error("Produto não encontrado");
       }
@@ -467,7 +431,7 @@ app.get("/purchases/:id", async (req: Request, res: Response) => {
       .from("purchases")
       .innerJoin("users", "purchases.buyer", "=", "users.id")
       .where("purchases.id", "=", idTosearch);
-
+    console.log(resultado1);
     const products = await db
       .select("*")
       .from("purchases_products")
@@ -475,6 +439,11 @@ app.get("/purchases/:id", async (req: Request, res: Response) => {
 
     resultado = { ...resultado1, products };
     console.log(resultado);
+
+    if (products.length === 0) {
+      res.status(404);
+      throw new Error("Produto não encontrado");
+    }
 
     res.status(200).send(resultado);
   } catch (error: any) {
